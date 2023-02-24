@@ -59,8 +59,8 @@ public class RobotContainer {
     // Button 'X' will reset gyro
     new JoystickButton(OI.driver_cntlr, LogitechController.BTN_X)
       .onTrue(new InstantCommand(() -> 
-        // OI.gyro.reset()
-        OI.pigeon.setYaw(0)
+        OI.gyro.reset()
+        // OI.pigeon.setYaw(0)
       ));
     
     // Button 'B' will stop robot turning
@@ -78,8 +78,8 @@ public class RobotContainer {
       .and(() -> sLimelight.getArea() > 10)
       .whileTrue(new FunctionalCommand(
         () -> {},
-        // () -> cTurnToAngle.setHeading(OI.gyro.getAngle() + sLimelight.getTx()),
-        () -> cTurnToAngle.setHeading(OI.pigeon.getYaw() + sLimelight.getTx()),
+        () -> cTurnToAngle.setHeading(OI.gyro.getAngle() + sLimelight.getTx()),
+        // () -> cTurnToAngle.setHeading(OI.pigeon.getYaw() + sLimelight.getTx()),
         interrupted -> sDrivetrain.stop(),
         () -> false,
         sLimelight

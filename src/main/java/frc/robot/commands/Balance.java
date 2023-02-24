@@ -15,7 +15,8 @@ public class Balance extends CommandBase {
   
   public Balance(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
-    previousPitch = OI.pigeon.getPitch();
+    // previousPitch = OI.pigeon.getPitch();
+    previousPitch = OI.gyro.getAngle();
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrain);
@@ -24,10 +25,13 @@ public class Balance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double pitch = OI.pigeon.getPitch();
+    // double pitch = OI.pigeon.getPitch();
+    double pitch = OI.gyro.getAngle();
+    System.out.println(OI.gyro.getAngle());
     // TODO: move forward while pitch is positive, backward while pitch is negative; remember that pitch changes very quickly and the robot should stop at any small change
     if (Math.abs(pitch) > DrivetrainConstants.kPitchDeadspot) {
       if (Math.abs(pitch - previousPitch) > 1) {
+        previousPitch = pitch;
         drivetrain.stop();
       } else {
         drivetrain.robotDrive.arcadeDrive(0, Math.copySign(DrivetrainConstants.kSpeedMult * 0.25, pitch), false);
