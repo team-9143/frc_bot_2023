@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -91,6 +92,17 @@ public class RobotContainer {
         sLimelight.setLedMode((sLimelight.getLedMode() <= 1) ? 3 : sLimelight.getLedMode()-1)
       ));
   }
+  //autos selector
+  public static final String kDefaultAuto = "Fly - move";
+  public static final String k1CustomAuto = "nothing";
+  public static final String k2CustomAuto = "Straight Pick Up";
+  public static final String k3CustomAuto = "Wait to Dock";
+  public static final String k4CustomAuto = "Two Grid Drops";
+  public static final String k5CustomAuto = "Turn Grid + dock";
+  public static final String k6CustomAuto = "Turn Grid"; 
+
+  public static String m_autoSelected;
+  final static SendableChooser <String> m_Chooser = new SendableChooser<>();
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

@@ -4,10 +4,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 
 
@@ -26,59 +24,34 @@ public final class Autos extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrain);
     
-  }
-  private static final String kDefaultAuto = "Fly - move";
-  private static final String k1CustomAuto = "nothing";
-  private static final String k2CustomAuto = "Straight Pick Up";
-  private static final String k3CustomAuto = "Wait to Dock";
-  private static final String k4CustomAuto = "Two Grid Drops";
-  private static final String k5CustomAuto = "Turn Grid + dock";
-  private static final String k6CustomAuto = "Turn Grid"; 
-
-  public static String m_autoSelected;
-  private final SendableChooser <String> m_Chooser = new SendableChooser<>();
-  
-    
-  
+  } 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {
-      m_Chooser.setDefaultOption("Default Auto", kDefaultAuto);
-      m_Chooser.addOption("nothing", k1CustomAuto);
-      m_Chooser.addOption("Straight Pick Up", k2CustomAuto);
-      m_Chooser.addOption("Wait to Dock", k3CustomAuto);
-      m_Chooser.addOption("Two Grid Drops", k4CustomAuto);
-      m_Chooser.addOption("Turn Grid + Dock", k5CustomAuto);
-      m_Chooser.addOption("Turn Grid", k6CustomAuto);
-  
-      SmartDashboard.putData("Auto choices", m_Chooser);
-  
-      m_autoSelected = m_Chooser.getSelected();
-    }
+    public void initialize() {}
   
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-      switch (m_autoSelected){
-        case k1CustomAuto:
+      switch (RobotContainer.m_autoSelected){
+        case RobotContainer.k1CustomAuto:
           //Put k1 code here
           break;
-        case k2CustomAuto:
+        case RobotContainer.k2CustomAuto:
           //Put k2
           break;
-        case k3CustomAuto:
+        case RobotContainer.k3CustomAuto:
           //Put k3
           break;
-        case k4CustomAuto:
+        case RobotContainer.k4CustomAuto:
           //Put k4
           break;
-        case k5CustomAuto:
+        case RobotContainer.k5CustomAuto:
           //Put k5
           break;
-        case k6CustomAuto:
+        case RobotContainer.k6CustomAuto:
           //You know what
           break;
-        case kDefaultAuto:
+        case RobotContainer.kDefaultAuto:
         default:
           //Put default auto code here
           break;

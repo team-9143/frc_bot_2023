@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -27,6 +28,18 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    RobotContainer.m_Chooser.setDefaultOption("Default Auto", RobotContainer.kDefaultAuto);
+    RobotContainer.m_Chooser.addOption("nothing", RobotContainer.k1CustomAuto);
+    RobotContainer.m_Chooser.addOption("Straight Pick Up", RobotContainer.k2CustomAuto);
+    RobotContainer.m_Chooser.addOption("Wait to Dock", RobotContainer.k3CustomAuto);
+    RobotContainer.m_Chooser.addOption("Two Grid Drops", RobotContainer.k4CustomAuto);
+    RobotContainer.m_Chooser.addOption("Two Grid Drops", RobotContainer.k4CustomAuto);
+    RobotContainer.m_Chooser.addOption("Turn Grid + Dock", RobotContainer.k5CustomAuto);
+    RobotContainer.m_Chooser.addOption("Turn Grid", RobotContainer.k6CustomAuto);
+    
+    SmartDashboard.putData("Auto choices", RobotContainer.m_Chooser);
+  
+    RobotContainer.m_autoSelected = RobotContainer.m_Chooser.getSelected();
   }
 
   /**
@@ -58,6 +71,7 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
+    System.out.println("Auto selected" + RobotContainer.m_autoSelected);
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
