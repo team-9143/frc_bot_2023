@@ -33,7 +33,6 @@ public class Robot extends TimedRobot {
     RobotContainer.m_Chooser.addOption("Straight Pick Up", RobotContainer.k2CustomAuto);
     RobotContainer.m_Chooser.addOption("Wait to Dock", RobotContainer.k3CustomAuto);
     RobotContainer.m_Chooser.addOption("Two Grid Drops", RobotContainer.k4CustomAuto);
-    RobotContainer.m_Chooser.addOption("Two Grid Drops", RobotContainer.k4CustomAuto);
     RobotContainer.m_Chooser.addOption("Turn Grid + Dock", RobotContainer.k5CustomAuto);
     RobotContainer.m_Chooser.addOption("Turn Grid", RobotContainer.k6CustomAuto);
     
