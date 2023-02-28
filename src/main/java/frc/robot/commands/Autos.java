@@ -18,6 +18,12 @@ public final class Autos extends CommandBase {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
   */
+
+  public void k1Auto(){
+    if (Drivetrain.encoders[0].getPosition() < 11.5){
+      Drivetrain.robotDrive.tankDrive(0.5, 0.5);
+    }
+  }
   public Autos(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
     
@@ -35,6 +41,7 @@ public final class Autos extends CommandBase {
       switch (RobotContainer.m_autoSelected){
         case RobotContainer.k1CustomAuto:
           //Put k1 code here
+          k1Auto();
           break;
         case RobotContainer.k2CustomAuto:
           //Put k2
