@@ -27,7 +27,6 @@ public class DriveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double driveDistance = distance;
     Boolean drive = (drivetrain.encoders[0].getPosition() < Math.abs(distance)) ? true: false;
     if (drive){
       drivetrain.robotDrive.arcadeDrive(0.5, 0);
