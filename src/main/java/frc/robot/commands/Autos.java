@@ -19,11 +19,7 @@ public final class Autos extends CommandBase {
   }
   */
 
-  public void k1Auto(){
-    if (Drivetrain.encoders[0].getPosition() < 11.5){
-      Drivetrain.robotDrive.tankDrive(0.5, 0.5);
-    }
-  }
+
   public Autos(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
     
@@ -31,6 +27,26 @@ public final class Autos extends CommandBase {
     addRequirements(drivetrain);
     
   } 
+
+  public void k1Auto(Double position){
+    if (position < 224/12){
+      drivetrain.robotDrive.tankDrive(0.5, 0.5);
+      if (position == 224/12){
+        drivetrain.encoders[0].setPosition(0);
+      }
+    }
+    else if (drivetrain.encoders[0].getPosition() > -224/12){
+      drivetrain.robotDrive.arcadeDrive(-0.5, 0);
+    }
+  }
+
+
+
+
+
+
+
+
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {}
@@ -41,7 +57,7 @@ public final class Autos extends CommandBase {
       switch (RobotContainer.m_autoSelected){
         case RobotContainer.k1CustomAuto:
           //Put k1 code here
-          k1Auto();
+          k1Auto(drivetrain.encoders[0].getPosition());
           break;
         case RobotContainer.k2CustomAuto:
           //Put k2
