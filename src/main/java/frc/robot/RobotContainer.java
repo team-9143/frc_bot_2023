@@ -28,6 +28,7 @@ public class RobotContainer {
   
   private final TurnToAngle cTurnToAngle = new TurnToAngle(sDrivetrain);
   private final Balance cBalance = new Balance(sDrivetrain);
+  private final Intake cIntake = new Intake();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -91,6 +92,10 @@ public class RobotContainer {
       .onTrue(new InstantCommand(() -> 
         sLimelight.setLedMode((sLimelight.getLedMode() <= 1) ? 3 : sLimelight.getLedMode()-1)
       ));
+
+    // Holding LB will turn on intake
+    new JoystickButton(OI.driver_cntlr, LogitechController.BTN_LB)
+      .whileTrue(cIntake);
   }
   //autos selector
   public static final String kDefaultAuto = "Fly - move";

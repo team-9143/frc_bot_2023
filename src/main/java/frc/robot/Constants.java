@@ -20,7 +20,8 @@ public final class Constants {
       kFrontLeftCANid = 1,
       kBackLeftCANid = 2,
       kFrontRightCANid = 3,
-      kBackRightCANid = 4;
+      kBackRightCANid = 4,
+      kIntakeid = 6;
   }
   
   public static class DrivetrainConstants {
