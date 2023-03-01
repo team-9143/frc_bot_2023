@@ -35,15 +35,17 @@ public final class Autos extends CommandBase {
   public void k1Auto(Double position){
     if (position <= 224/12){
       drivetrain.robotDrive.tankDrive(0.5, 0.5);
-      if (position == 224/12){
-        drivetrain.encoders[0].setPosition(0);
-      }
     }
+
     new RunCommand(() -> cTurnToAngle.setHeading(90));
     new RunCommand(() -> cTurnToAngle.setHeading(90));
+
+    drivetrain.encoders[0].setPosition(0);
+
     if (drivetrain.encoders[0].getPosition() <= 224/12){
       drivetrain.robotDrive.arcadeDrive(-0.5, 0);
     }
+
     drivetrain.stop();
   }
 
