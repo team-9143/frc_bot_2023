@@ -4,14 +4,14 @@
 
 package frc.robot.commands;
 
-import frc.robot.Constants.DrivetrainConstants;
-import frc.robot.OI;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // TODO: implement, with encoders
 public class DriveDistance extends CommandBase {
   private final Drivetrain drivetrain;
+  private static double distance;
+
 
   public DriveDistance(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
@@ -26,7 +26,13 @@ public class DriveDistance extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double driveDistance = distance;
+    Boolean drive = (drivetrain.encoders[0].getPosition() < Math.abs(distance)) ? true: false;
+    if (drive){
+      drivetrain.robotDrive.arcadeDrive(0.5, 0);
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
@@ -35,6 +41,13 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    drivetrain.encoders[0].setPosition(0);
+    drivetrain.stop();
     return false;
+  }
+
+  public void setDistance(double fdistance) {
+      distance = fdistance;
+      schedule();
   }
 }

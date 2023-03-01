@@ -14,6 +14,8 @@ public final class Autos extends CommandBase {
   
   private Drivetrain drivetrain;
   private final TurnToAngle cTurnToAngle = new TurnToAngle(drivetrain);
+  private final DriveDistance cDriveDistance = new DriveDistance(drivetrain);
+
 
 
   /** Example static factory for an autonomous command. */
@@ -33,20 +35,10 @@ public final class Autos extends CommandBase {
   } 
 
   public void k1Auto(Double position){
-    if (position <= 224/12){
-      drivetrain.robotDrive.tankDrive(0.5, 0.5);
-    }
-
+    new RunCommand(() -> cDriveDistance.setDistance(224/12));
     new RunCommand(() -> cTurnToAngle.setHeading(90));
     new RunCommand(() -> cTurnToAngle.setHeading(90));
-
-    drivetrain.encoders[0].setPosition(0);
-
-    if (drivetrain.encoders[0].getPosition() <= 224/12){
-      drivetrain.robotDrive.arcadeDrive(-0.5, 0);
-    }
-
-    drivetrain.stop();
+    new RunCommand(() -> cDriveDistance.setDistance(224/12));
   }
 
 
