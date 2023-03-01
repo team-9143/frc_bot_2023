@@ -5,12 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 
 
 public final class Autos extends CommandBase {
+  
   private Drivetrain drivetrain;
+  private final TurnToAngle cTurnToAngle = new TurnToAngle(drivetrain);
+
 
   /** Example static factory for an autonomous command. */
   /*
@@ -35,9 +39,12 @@ public final class Autos extends CommandBase {
         drivetrain.encoders[0].setPosition(0);
       }
     }
-    else if (drivetrain.encoders[0].getPosition() >= -224/12){
+    new RunCommand(() -> cTurnToAngle.setHeading(90));
+    new RunCommand(() -> cTurnToAngle.setHeading(90));
+    if (drivetrain.encoders[0].getPosition() <= 224/12){
       drivetrain.robotDrive.arcadeDrive(-0.5, 0);
     }
+    drivetrain.stop();
   }
 
 
