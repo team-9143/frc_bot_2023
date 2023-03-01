@@ -29,13 +29,13 @@ public final class Autos extends CommandBase {
   } 
 
   public void k1Auto(Double position){
-    if (position < 224/12){
+    if (position <= 224/12){
       drivetrain.robotDrive.tankDrive(0.5, 0.5);
       if (position == 224/12){
         drivetrain.encoders[0].setPosition(0);
       }
     }
-    else if (drivetrain.encoders[0].getPosition() > -224/12){
+    else if (drivetrain.encoders[0].getPosition() >= -224/12){
       drivetrain.robotDrive.arcadeDrive(-0.5, 0);
     }
   }
