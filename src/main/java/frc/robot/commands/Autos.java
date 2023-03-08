@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 
@@ -40,27 +39,21 @@ public final class Autos extends CommandBase {
     Commands.sequence(
 
       Commands.runOnce(() -> cDriveDistance.setDistance(224/12)),
-      Commands.waitUntil(cDriveDistance::isFinished),
       Commands.runOnce(() -> cTurnToAngle.setHeading(90)),
-      Commands.waitUntil(cTurnToAngle::isFinished),
       Commands.runOnce(() -> cTurnToAngle.setHeading(90)),
-      Commands.waitUntil(cTurnToAngle::isFinished),
       Commands.runOnce(() -> cDriveDistance.setDistance(224/12)));
+
   }
 
   public void k2Auto(){
     Commands.sequence(
       Commands.runOnce(() -> cDriveDistance.setDistance(224/12)),
-      Commands.waitUntil(cDriveDistance::isFinished),
       Commands.runOnce(() -> cDriveDistance.setDistance(5/12)),
-      Commands.waitUntil(cDriveDistance::isFinished),
       Commands.runOnce(() -> cTurnToAngle.setHeading(90)),
-      Commands.waitUntil(cTurnToAngle::isFinished),
       Commands.runOnce(() -> cDriveDistance.setDistance(4)),
-      Commands.waitUntil(cDriveDistance::isFinished),
       Commands.runOnce(() -> cTurnToAngle.setHeading(90)),
-      Commands.waitUntil(cTurnToAngle::isFinished),
       Commands.runOnce(() -> cDriveDistance.setDistance(4.1)));
+      cBalance.execute();
   }
 
 
