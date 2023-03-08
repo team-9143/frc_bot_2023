@@ -22,21 +22,23 @@ public class DriveDistance extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    drivetrain.encoders[0].setPosition(0);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Boolean drive = (drivetrain.encoders[0].getPosition() < Math.abs(distance)) ? true: false;
-    if (drive){
-      drivetrain.robotDrive.arcadeDrive(0.5, 0);
+    Double speed = -(Math.pow(drivetrain.encoders[0].getPosition()/distance,10)) + 1;
+    speed = (distance < 0) ? -speed : speed;
+    if (drivetrain.encoders[0].getPosition() < Math.abs(distance)){
+      drivetrain.robotDrive.arcadeDrive(0.5*speed, 0);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.encoders[0].setPosition(0);
     drivetrain.stop();
   }
 

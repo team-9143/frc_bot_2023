@@ -5,7 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 
@@ -15,6 +16,7 @@ public final class Autos extends CommandBase {
   private Drivetrain drivetrain;
   private final TurnToAngle cTurnToAngle = new TurnToAngle(drivetrain);
   private final DriveDistance cDriveDistance = new DriveDistance(drivetrain);
+  private final Balance cBalance = new Balance(drivetrain);
 
 
 
@@ -34,14 +36,23 @@ public final class Autos extends CommandBase {
     
   } 
 
-  public void k1Auto(Double position){
-    new RunCommand(() -> cDriveDistance.setDistance(224/12));
-    new RunCommand(() -> cTurnToAngle.setHeading(90));
-    new RunCommand(() -> cTurnToAngle.setHeading(90));
-    new RunCommand(() -> cDriveDistance.setDistance(224/12));
+  public void k1Auto(){
+    new InstantCommand(() -> cDriveDistance.setDistance(224/12));
+    new InstantCommand(() -> cTurnToAngle.setHeading(90));
+
+    new InstantCommand(() -> cTurnToAngle.setHeading(90));
+    new InstantCommand(() -> cDriveDistance.setDistance(224/12));
   }
 
-
+  public void k2Auto(){
+    Commands.sequence(
+      Commands.runOnce(() -> cDriveDistance.setDistance(224/12)),
+      Commands.runOnce(() -> cDriveDistance.setDistance(5/12)),
+      Commands.runOnce(() -> cTurnToAngle.setHeading(90)),
+      Commands.runOnce(() -> cDriveDistance.setDistance(4)),
+      Commands.runOnce(() -> cTurnToAngle.setHeading(90)),
+      Commands.runOnce(() -> cDriveDistance.setDistance(4.1)));
+  }
 
 
 
@@ -58,7 +69,7 @@ public final class Autos extends CommandBase {
       switch (RobotContainer.m_autoSelected){
         case RobotContainer.k1CustomAuto:
           //Put k1 code here
-          k1Auto(drivetrain.encoders[0].getPosition());
+          k1Auto();
           break;
         case RobotContainer.k2CustomAuto:
           //Put k2
