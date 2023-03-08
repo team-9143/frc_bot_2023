@@ -75,6 +75,7 @@ public final class Autos extends CommandBase {
           break;
         case RobotContainer.k2CustomAuto:
           //Put k2
+          k2Auto();
           break;
         case RobotContainer.k3CustomAuto:
           //Put k3
