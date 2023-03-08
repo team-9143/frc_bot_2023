@@ -39,7 +39,6 @@ public final class Autos extends CommandBase {
   public void k1Auto(){
     new InstantCommand(() -> cDriveDistance.setDistance(224/12));
     new InstantCommand(() -> cTurnToAngle.setHeading(90));
-
     new InstantCommand(() -> cTurnToAngle.setHeading(90));
     new InstantCommand(() -> cDriveDistance.setDistance(224/12));
   }
@@ -47,10 +46,15 @@ public final class Autos extends CommandBase {
   public void k2Auto(){
     Commands.sequence(
       Commands.runOnce(() -> cDriveDistance.setDistance(224/12)),
+      Commands.waitUntil(cDriveDistance::isFinished),
       Commands.runOnce(() -> cDriveDistance.setDistance(5/12)),
+      Commands.waitUntil(cDriveDistance::isFinished),
       Commands.runOnce(() -> cTurnToAngle.setHeading(90)),
+      Commands.waitUntil(cTurnToAngle::isFinished),
       Commands.runOnce(() -> cDriveDistance.setDistance(4)),
+      Commands.waitUntil(cDriveDistance::isFinished),
       Commands.runOnce(() -> cTurnToAngle.setHeading(90)),
+      Commands.waitUntil(cTurnToAngle::isFinished),
       Commands.runOnce(() -> cDriveDistance.setDistance(4.1)));
   }
 
