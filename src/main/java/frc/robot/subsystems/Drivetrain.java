@@ -49,8 +49,8 @@ public class Drivetrain extends SubsystemBase {
         } else {
           // Regular drive, input from left stick
           this.robotDrive.arcadeDrive(DrivetrainConstants.kSpeedMult*DrivetrainConstants.kTurnMult * OI.driver_cntlr.getLeftStick()[0], -DrivetrainConstants.kSpeedMult*OI.driver_cntlr.getLeftStick()[1], true);
-          SmartDashboard.putNumber("Right Motor Velocity", encoders[2].getVelocity());
-          SmartDashboard.putNumber("Left Motor Velocity", encoders[3].getVelocity());
+          SmartDashboard.putNumber("Right Motors RPM", encoders[2].getVelocity());
+          SmartDashboard.putNumber("Left Motors RPM", encoders[3].getVelocity());
         }
       }, this));
 
