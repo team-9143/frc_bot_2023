@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.LogitechController;
 import frc.robot.OI;
 import frc.robot.Constants.DrivetrainConstants;
 
@@ -27,7 +29,6 @@ public class Balance extends CommandBase {
   public void execute() {
     // Get pitch that increases to the back
     double pitch = -OI.pigeon.getPitch();
-    
     if (Math.abs(pitch) > DrivetrainConstants.kPitchDeadspot) {
       if (Math.abs(pitch - previousPitch) > 3) {
         // Stop movement on a large pitch change (usually denoting a fall)
@@ -40,7 +41,6 @@ public class Balance extends CommandBase {
     
     previousPitch = pitch;
   }
-
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {

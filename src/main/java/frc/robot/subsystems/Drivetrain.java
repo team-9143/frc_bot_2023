@@ -15,7 +15,7 @@ import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 public class Drivetrain extends SubsystemBase {
@@ -25,13 +25,14 @@ public class Drivetrain extends SubsystemBase {
     bl_motor = new CANSparkMax(DeviceConstants.kBackLeftCANid, MotorType.kBrushless),
     fr_motor = new CANSparkMax(DeviceConstants.kFrontRightCANid, MotorType.kBrushless),
     br_motor = new CANSparkMax(DeviceConstants.kBackRightCANid, MotorType.kBrushless);
-
+    
   public final RelativeEncoder[] encoders = {
     fl_motor.getEncoder(),
     bl_motor.getEncoder(),
     fr_motor.getEncoder(),
-    br_motor.getEncoder()
+    br_motor.getEncoder(),
   };
+  
 
   public final DifferentialDrive robotDrive = new DifferentialDrive(
     new MotorControllerGroup(fl_motor, bl_motor),
@@ -48,6 +49,8 @@ public class Drivetrain extends SubsystemBase {
         } else {
           // Regular drive, input from left stick
           this.robotDrive.arcadeDrive(DrivetrainConstants.kSpeedMult*DrivetrainConstants.kTurnMult * OI.driver_cntlr.getLeftStick()[0], -DrivetrainConstants.kSpeedMult*OI.driver_cntlr.getLeftStick()[1], true);
+          SmartDashboard.putNumber("Right Motor Velocity", encoders[2].getVelocity());
+          SmartDashboard.putNumber("Left Motor Velocity", encoders[3].getVelocity());
         }
       }, this));
 
