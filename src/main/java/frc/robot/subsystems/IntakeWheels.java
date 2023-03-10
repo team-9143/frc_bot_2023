@@ -12,6 +12,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class IntakeWheels extends SubsystemBase {
   public final CANSparkMax intake_motor = new CANSparkMax(DeviceConstants.kIntakeWheelsCANid, MotorType.kBrushless);
+  
+  public final RelativeEncoder[] IWencoders = {
+    intake_motor.getEncoder(),
+  };
 
   // Stops all motors
   public void stop() {

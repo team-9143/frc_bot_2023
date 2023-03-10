@@ -49,8 +49,6 @@ public class Drivetrain extends SubsystemBase {
         } else {
           // Regular drive, input from left stick
           this.robotDrive.arcadeDrive(DrivetrainConstants.kSpeedMult*DrivetrainConstants.kTurnMult * OI.driver_cntlr.getLeftStick()[0], -DrivetrainConstants.kSpeedMult*OI.driver_cntlr.getLeftStick()[1], true);
-          SmartDashboard.putNumber("Right Motors RPM", encoders[2].getVelocity());
-          SmartDashboard.putNumber("Left Motors RPM", encoders[3].getVelocity());
         }
       }, this));
 
@@ -58,6 +56,8 @@ public class Drivetrain extends SubsystemBase {
       // Sets encoders to measure position in feet
       encoder.setPositionConversionFactor(Math.PI * DrivetrainConstants.kWheelDiameter / DrivetrainConstants.kGearboxRatio);
     }
+    SmartDashboard.putNumber("Right Motors RPM", encoders[2].getVelocity());
+    SmartDashboard.putNumber("Left Motors RPM", encoders[3].getVelocity());
   }
 
   // Stops drivetrain motors
