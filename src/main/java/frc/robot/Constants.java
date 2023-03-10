@@ -26,7 +26,10 @@ public final class Constants {
   public static class DrivetrainConstants {
     public static final double kWheelDiameter = 0.5; // In feet
     public static final double kGearboxRatio = 12.761;
-    
+    public static final double kRotationToInches = 0.05305164769; // The amount of times the wheel has to turn to turn one inch
+    public static final double kRotationToFeet = kRotationToInches * 12; // The amount of times the wheel has to turn to turn one foot
+
+
     // General driving
     public static final double kSpeedMult = 1;
     public static final double kTurnMult = 0.7; // For normal turning

@@ -5,12 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 
 
 public final class Autos extends CommandBase {
+  
   private Drivetrain drivetrain;
+  private final TurnToAngle cTurnToAngle = new TurnToAngle(drivetrain);
+
 
   /** Example static factory for an autonomous command. */
   /*
@@ -18,6 +22,8 @@ public final class Autos extends CommandBase {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
   */
+
+
   public Autos(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
     
@@ -25,6 +31,31 @@ public final class Autos extends CommandBase {
     addRequirements(drivetrain);
     
   } 
+
+  public void k1Auto(Double position){
+    if (position <= 224/12){
+      drivetrain.robotDrive.tankDrive(0.5, 0.5);
+    }
+
+    new RunCommand(() -> cTurnToAngle.setHeading(90));
+    new RunCommand(() -> cTurnToAngle.setHeading(90));
+
+    drivetrain.encoders[0].setPosition(0);
+
+    if (drivetrain.encoders[0].getPosition() <= 224/12){
+      drivetrain.robotDrive.arcadeDrive(-0.5, 0);
+    }
+
+    drivetrain.stop();
+  }
+
+
+
+
+
+
+
+
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {}
@@ -35,6 +66,7 @@ public final class Autos extends CommandBase {
       switch (RobotContainer.m_autoSelected){
         case RobotContainer.k1CustomAuto:
           //Put k1 code here
+          k1Auto(drivetrain.encoders[0].getPosition());
           break;
         case RobotContainer.k2CustomAuto:
           //Put k2
