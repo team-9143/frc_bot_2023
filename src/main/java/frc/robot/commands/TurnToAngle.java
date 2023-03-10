@@ -29,7 +29,7 @@ public class TurnToAngle extends CommandBase {
     double turnAngle = (heading + OI.pigeon.getYaw()) % 360;
     turnAngle += (turnAngle < -180) ? 360 : (turnAngle > 180) ? -360 : 0;
     double turnAngleMult = turnAngle / 180;
-
+    SmartDashboard.putNumber("Turn angle", turnAngle);
     if (Math.abs(turnAngle) > DrivetrainConstants.kTurnDeadspot) {
       drivetrain.robotDrive.arcadeDrive(DrivetrainConstants.kSpeedMult * Math.copySign((turnAngleMult*turnAngleMult * (1-DrivetrainConstants.kTurnPower)) + DrivetrainConstants.kTurnPower, turnAngleMult), 0, false);
     } else {
@@ -56,5 +56,6 @@ public class TurnToAngle extends CommandBase {
         OI.driver_cntlr.getRightStick()[1]
       )));
     }
+  SmartDashboard.putNumber("Heading", setHeading());
   }
 }
