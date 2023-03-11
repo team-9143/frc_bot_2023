@@ -4,10 +4,17 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.RobotDriveBase;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.Robot;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.Drivetrain;
 
 public final class Autos extends CommandBase {
+  private Drivetrain drivetrain;
+
   /** Example static factory for an autonomous command. */
   /*
   public static CommandBase exampleAuto(ExampleSubsystem subsystem) {
@@ -63,7 +70,6 @@ public final class Autos extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-      robot
       return false;
     }
 }

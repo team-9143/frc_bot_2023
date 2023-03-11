@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.Constants.DrivetrainConstants;
@@ -56,6 +57,6 @@ public class TurnToAngle extends CommandBase {
         OI.driver_cntlr.getRightStick()[1]
       )));
     }
-  SmartDashboard.putNumber("Heading", setHeading());
+  SmartDashboard.putNumber("Heading", OI.driver_cntlr.getPOV());
   }
 }
