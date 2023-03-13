@@ -30,7 +30,7 @@ public class Intake extends CommandBase {
     intakePositional.setSetpoint(IntakeConstants.kDownPos);
     intakePositional.enable();
     intakeWheels.intake_motor.set(IntakeConstants.kIntakeSpeed);
-    SmartDashboard.putNumber("IntakeWheel RPM", intakeWheels.IWencoders[1].getVelocity());
+    //SmartDashboard.putNumber("IntakeWheel RPM", intakeWheels.IWencoders[1].getVelocity());
   }
 
   // Called once the command ends or is interrupted.

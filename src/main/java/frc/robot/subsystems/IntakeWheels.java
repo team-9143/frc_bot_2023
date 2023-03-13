@@ -12,12 +12,9 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class IntakeWheels extends SubsystemBase {
-  public final CANSparkMax intake_motor = new CANSparkMax(DeviceConstants.kIntakeWheelsCANid, MotorType.kBrushless);
+  public final static CANSparkMax intake_motor = new CANSparkMax(DeviceConstants.kIntakeWheelsCANid, MotorType.kBrushless);
+  public static double IWRPM = ((RelativeEncoder) intake_motor).getVelocity();
   
-  public final RelativeEncoder[] IWencoders = {
-    intake_motor.getEncoder(),
-  };
-
   // Stops all motors
   public void stop() {
     intake_motor.stopMotor();
