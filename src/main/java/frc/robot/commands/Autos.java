@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
@@ -17,7 +18,7 @@ public final class Autos extends CommandBase {
     return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
   }
   */
-  
+
   public Autos(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
     
@@ -27,7 +28,9 @@ public final class Autos extends CommandBase {
   } 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {}
+    public void initialize() {
+      SmartDashboard.getBoolean("Auto", isFinished());
+    }
   
     // Called every time the scheduler runs while the command is scheduled.
     @Override
