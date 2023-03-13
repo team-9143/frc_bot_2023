@@ -57,6 +57,5 @@ public class TurnToAngle extends CommandBase {
         OI.driver_cntlr.getRightStick()[1]
       )));
     }
-  SmartDashboard.putNumber("Heading", OI.driver_cntlr.getPOV());
   }
 }

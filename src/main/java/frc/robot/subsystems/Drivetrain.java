@@ -58,6 +58,7 @@ public class Drivetrain extends SubsystemBase {
     }
     SmartDashboard.putNumber("Right Motors RPM", encoders[2].getVelocity());
     SmartDashboard.putNumber("Left Motors RPM", encoders[3].getVelocity());
+    SmartDashboard.putNumber("Heading", OI.driver_cntlr.getPOV());
   }
 
   // Stops drivetrain motors

@@ -7,6 +7,7 @@ package frc.robot.commands;
 // import frc.robot.Constants.DrivetrainConstants;
 // import frc.robot.OI;
 import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // TODO: implement, with encoders
@@ -22,7 +23,9 @@ public class DriveDistance extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    SmartDashboard.putBoolean("DriveDistance", isFinished());
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
