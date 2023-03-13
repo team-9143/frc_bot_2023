@@ -32,7 +32,7 @@ public class RobotContainer {
   protected final Balance cBalance = new Balance(sDrivetrain);
   protected final Intake cIntake = new Intake(sIntakePosition, sIntakeWheels);
   protected final Command cOuttake = new FunctionalCommand(
-    () -> sIntakeWheels.intake_motor.set(Constants.IntakeConstants.kOuttakeSpeed),
+    () -> IntakeWheels.intake_motor.set(Constants.IntakeConstants.kOuttakeSpeed),
     () -> {},
     (interrupted) -> sIntakeWheels.stop(),
     () -> false,

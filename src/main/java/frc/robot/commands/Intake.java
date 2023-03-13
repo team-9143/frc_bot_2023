@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.IntakeConstants;
 
@@ -29,7 +29,7 @@ public class Intake extends CommandBase {
     // Sets setpoint down and starts intake
     intakePositional.setSetpoint(IntakeConstants.kDownPos);
     intakePositional.enable();
-    intakeWheels.intake_motor.set(IntakeConstants.kIntakeSpeed);
+    IntakeWheels.intake_motor.set(IntakeConstants.kIntakeSpeed);
     //SmartDashboard.putNumber("IntakeWheel RPM", intakeWheels.IWencoders[1].getVelocity());
   }
 
