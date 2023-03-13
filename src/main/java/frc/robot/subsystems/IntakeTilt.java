@@ -47,4 +47,12 @@ public class IntakeTilt extends PIDSubsystem {
     disable();
     setSetpoint(IntakeConstants.kUpPos);
   }
+
+  public void resetEncoders(){
+    tilt_encoder.setPosition(IntakeConstants.kUpPos);
+  }
+
+  public void setMotorSpeed(double speed){
+    tilt_motor.set(speed);
+  }
 }

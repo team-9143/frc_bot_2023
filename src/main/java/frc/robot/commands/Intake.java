@@ -13,6 +13,7 @@ import frc.robot.subsystems.IntakeWheels;
 public class Intake extends CommandBase {
   private final IntakeTilt intakeTilt;
   private final IntakeWheels intakeWheels;
+  double direction;
 
   public Intake(IntakeTilt intakeTilt, IntakeWheels intakeWheels) {
     this.intakeTilt = intakeTilt;
@@ -31,11 +32,22 @@ public class Intake extends CommandBase {
     intakeWheels.intake_motor.set(IntakeConstants.kIntakeSpeed);
   }
 
+  @Override
+  public void execute() {
+    direction = (direction > 1) ? 1 : (direction < -1) ? -1 : direction;
+    intakeTilt.setMotorSpeed(direction);   
+  }
+
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     // Sets default setpoint and stops intake
     intakeTilt.setSetpoint(IntakeConstants.kUpPos);
     intakeWheels.stop();
+  }
+
+  public void direction(double fdirection){
+    direction = fdirection;
+    schedule();
   }
 }
