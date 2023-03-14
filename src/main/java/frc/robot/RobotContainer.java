@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain sDrivetrain = new Drivetrain();
-  //private final Limelight sLimelight = new Limelight();
+  private final Limelight sLimelight = new Limelight();
   private final IntakeWheels sIntakeWheels = new IntakeWheels();
   private final IntakeTilt sIntakeTilt = new IntakeTilt();
 
@@ -113,39 +113,35 @@ public class RobotContainer {
       }));
 
     // Operator Controller:
-    //Button 'B' (hold) will continuously stop all movement
+    // Button 'B' (hold) will continuously stop all movement
     new JoystickButton(OI.operator_cntlr, OI.Controller.btn.B.val)
-    .whileTrue(cStop);
+      .whileTrue(cStop);
 
     // Button 'A' will disable automatic intake control
     new JoystickButton(OI.operator_cntlr, OI.Controller.btn.A.val)
-    .whileTrue(new InstantCommand(() -> {
-      sIntakeTilt.disable();
-    }));
+      .onTrue(new InstantCommand(() -> {
+        sIntakeTilt.disable();
+      }));
 
     // Button 'Y' will enable automatic intake control
     new JoystickButton(OI.operator_cntlr, OI.Controller.btn.Y.val)
-    .whileTrue(new InstantCommand(() -> {
-      sIntakeTilt.enable();
-    }));
+      .onTrue(new InstantCommand(() -> {
+        sIntakeTilt.enable();
+      }));
 
-    // Button 'X' will reset tilt encoder (minus default position)
+    // Button 'X' will reset tilt encoder
     new JoystickButton(OI.operator_cntlr, OI.Controller.btn.X.val)
-    .whileTrue(new InstantCommand(() -> {
-      sIntakeTilt.resetEncoders();
-    }));
-    
+      .onTrue(new InstantCommand(() -> {
+        sIntakeTilt.resetEncoder();
+      }));
 
-    // Controller triggers will manually move intake up and down
-    new JoystickButton(OI.operator_cntlr, OI.Controller.axis.rightTrigger.val)
-    .whileTrue(new InstantCommand(() -> {
-      cIntake.direction(1);
-    }));
 
-    new JoystickButton(OI.operator_cntlr, OI.Controller.axis.leftTrigger.val)
-    .whileTrue(new InstantCommand(() -> {
-      cIntake.direction(-1);
-    }));
+    // Triggers will manually move intake up (LT) and down (RT)
+    new Trigger(() -> Math.abs(OI.operator_cntlr.getTriggers()) > 0.1)
+      .whileTrue(new RunCommand(
+        () -> sIntakeWheels.intake_motor.set((OI.driver_cntlr.getTriggers() > 0) ? Constants.IntakeConstants.kDownSpeed : Constants.IntakeConstants.kUpSpeed),
+        sIntakeWheels
+      ));
 
     // Button 'LB' (hold) will spit cubes
     new JoystickButton(OI.operator_cntlr, OI.Controller.btn.LB.val)

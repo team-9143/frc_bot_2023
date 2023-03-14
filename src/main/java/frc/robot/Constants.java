@@ -16,7 +16,7 @@ package frc.robot;
 public final class Constants {
   public static class DeviceConstants {
     public static final byte kDriverCntlrPort = 0;
-    public static byte kOperatorCntlrPort = 1;
+    public static final byte kOperatorCntlrPort = 1;
     public static final byte
       kFrontLeftCANid = 3,
       kBackLeftCANid = 4,
@@ -65,6 +65,10 @@ public final class Constants {
     // In rotations, multiplied by gearbox ratio
     public static final double kUpPos = -0.02;
     public static final double kDownPos = (double) -75/360;
+
+    // Manual intake movement
+    public static final double kUpSpeed = 0.3;
+    public static final double kDownSpeed = -0.2;
 
     // Intake tilt gains
     public static final double
